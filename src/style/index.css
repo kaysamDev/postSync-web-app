@@ -26,6 +26,8 @@
   --color-secondary-900: #512f60;
   --color-secondary-950: #401c4f;
   --color-secondary-foreground: hsl(var(--color-secondary-foreground));
+
+  --color-background: #f9f9f9;
 }
 
 @font-face {
@@ -40,7 +42,6 @@
 }
 
 body {
-  background-color: var(--color-primary-100);
   font-family: "Baufra", sans-serif;
 }
 
