@@ -28,6 +28,7 @@
   --color-secondary-foreground: hsl(var(--color-secondary-foreground));
 
   --color-background: #f9f9f9;
+  --font-header: "Poppin", "sans-serif";
 }
 
 @font-face {
@@ -51,7 +52,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-semibold;
+  @apply font-medium font-header;
 }
 
 h1 {
