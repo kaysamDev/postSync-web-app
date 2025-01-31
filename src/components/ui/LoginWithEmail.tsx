@@ -1,10 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { formSchema } from "../../UserSchema";
 import { Button } from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
-
 import {
   Avatar,
   AvatarFallback,
@@ -21,12 +19,17 @@ import {
 import { Input } from "../../../components/ui/input";
 import { Link } from "react-router-dom";
 
-type FormData = z.infer<typeof formSchema>;
+const LoginWithEmailSchema = z.object({
+  email: z.string().email("Invalid email format"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+});
+
+type FormData = z.infer<typeof LoginWithEmailSchema>;
 
 export default function LoginWithEmail() {
   const navigate = useNavigate();
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(LoginWithEmailSchema),
     defaultValues: {
       email: "",
       password: "",

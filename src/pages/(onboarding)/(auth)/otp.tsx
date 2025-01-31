@@ -5,21 +5,25 @@ import {
   InputOTPSlot,
 } from "../../../../components/ui/input-otp";
 import { useNavigate } from "react-router-dom";
-import OTPVerified from "../../../components/ui/OTPVerified";
+import Alert from "../../../components/ui/Alert";
 import { useState } from "react";
 
 const OTPVerification = () => {
   const navigate = useNavigate();
-  const [isVerified, setIsVerified] = useState(true);
+  const [isVerified, setIsVerified] = useState(false);
   return (
-    <>
+    <div className="flex flex-col gap-4 justify-center items-center md:w-3/5 mx-auto">
       {isVerified ? (
-        <OTPVerified />
+        <Alert
+          title="Account Verified Successfully"
+          message="Click the button below to proceed to to your Homepage"
+          buttonText="Go home"
+        />
       ) : (
-        <div className="flex flex-col gap-4 justify-center items-center md:w-3/5 mx-auto">
+        <div>
           <div>
             <div className="w-12 h-12 mx-auto rounded-full bg-gray-500 mb-4"></div>
-            <h5>OTP (One Time Password)</h5>
+            <h5 className="text-center">OTP (One Time Password)</h5>
           </div>
           <div>
             <p className="text-gray-400 mb-6 text-center">
@@ -39,7 +43,11 @@ const OTPVerification = () => {
                 </InputOTPGroup>
               </InputOTP>
 
-              <Button type="submit" className="w-full">
+              <Button
+                type="submit"
+                className="w-full"
+                onClick={() => setIsVerified(true)}
+              >
                 Verify OTP
               </Button>
               <Button
@@ -53,7 +61,7 @@ const OTPVerification = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
