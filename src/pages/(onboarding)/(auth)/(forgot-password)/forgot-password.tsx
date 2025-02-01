@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input } from "../../../../../components/ui/input";
 import Alert from "../../../../components/ui/Alert";
+import { useNavigate } from "react-router-dom";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email format"),
@@ -22,6 +23,9 @@ type FormData = z.infer<typeof forgotPasswordSchema>;
 
 export default function ForgotPassword() {
   const [isLinkSent, setIsLinkSent] = useState(false);
+
+  const navigate = useNavigate();
+
   const form = useForm<FormData>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
@@ -32,6 +36,7 @@ export default function ForgotPassword() {
   const onSubmit = (data: FormData) => {
     console.log("Form Data:", data);
     setIsLinkSent(true);
+    navigate("/create-new-password");
   };
 
   return (

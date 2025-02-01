@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/ui/Button";
 
 export default function NotFound() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="flex flex-col gap-4 justify-center items-center md:w-3/5 mx-auto h-dvh">
       <h1>404 - Page Not Found</h1>
       <p>Sorry, the page you are looking for does not exist.</p>
-      <Link to="/">Go back to Home</Link>
+      <Button onClick={handleGoBack}>Go Back</Button>
     </div>
   );
 }

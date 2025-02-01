@@ -119,6 +119,7 @@ export default function RegisterWithEmail() {
                       checked={field.value}
                       onChange={field.onChange}
                       className="h-4 w-4"
+                      value={field.value ? "true" : "false"}
                     />
                   </FormControl>
                   <FormLabel>

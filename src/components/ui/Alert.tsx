@@ -1,16 +1,12 @@
 import { Button } from "../../../components/ui/Button";
 
-type OTPVerifiedProps = {
+type AlertProps = {
   title: string;
   message: string;
   buttonText?: string;
 };
 
-export default function OTPVerified({
-  title,
-  message,
-  buttonText,
-}: OTPVerifiedProps) {
+export default function Alert({ title, message, buttonText }: AlertProps) {
   return (
     <>
       <div className="w-full h-[326px] bg-gray-300"></div>
