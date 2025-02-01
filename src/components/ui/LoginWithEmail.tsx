@@ -79,7 +79,7 @@ export default function LoginWithEmail() {
             )}
           />
           <p>
-            <Link to="#" className="text-primary-500">
+            <Link to="/forgot-password" className="text-primary-500">
               Forgot password?
             </Link>
           </p>
