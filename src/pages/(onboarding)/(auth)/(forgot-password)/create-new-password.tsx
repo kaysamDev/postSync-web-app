@@ -44,15 +44,15 @@ export default function CreateNewPassword() {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-4 justify-center items-center md:w-3/5 mx-auto">
       {isCreated ? (
         <Alert
-          title="New Password Create"
+          title="New Password Created"
           message="Click the button below to go to your Homepage"
           buttonText="Homepage"
         />
       ) : (
-        <div className="flex flex-col gap-4 justify-center items-center md:w-3/5 mx-auto">
+        <div>
           <div className="text-center">
             <Avatar className="mx-auto">
               <AvatarImage src="https://github.com/shadcn.png" />
@@ -84,7 +84,7 @@ export default function CreateNewPassword() {
               />
               <FormField
                 control={form.control}
-                name="password"
+                name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Confirm New Password</FormLabel>
@@ -106,6 +106,6 @@ export default function CreateNewPassword() {
           </Form>
         </div>
       )}
-    </>
+    </div>
   );
 }
