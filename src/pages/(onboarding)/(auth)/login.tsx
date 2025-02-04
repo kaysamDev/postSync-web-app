@@ -50,6 +50,9 @@ export default function Login() {
 
   return (
     <div className="flex flex-col gap-4 justify-center items-center md:w-3/5 mx-auto">
+      <div className="sr-only">
+        <h1>PostSync | Login</h1>
+      </div>
       {emailForm ? (
         <div className="w-full">
           <LoginWithEmail />

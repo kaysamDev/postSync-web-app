@@ -11,6 +11,9 @@ import {
 export default function index() {
   return (
     <div className="flex flex-col gap-4 justify-center items-start md:w-3/5 mx-auto">
+      <div className="sr-only">
+        <h1>PostSync | Account</h1>
+      </div>
       <h5>Add Accounts</h5>
       <p>Connect your accounts to get started</p>
       <Dialog>
