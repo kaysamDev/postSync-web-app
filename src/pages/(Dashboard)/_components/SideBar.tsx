@@ -11,9 +11,9 @@ import { Link, useLocation } from "react-router-dom";
 
 const links = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
-  { href: "/#", icon: FileText, label: "Content Management" },
-  { href: "/#", icon: Settings, label: "Accounts" },
-  { href: "/#", icon: CreditCard, label: "Billing & Payment" },
+  { href: "#", icon: FileText, label: "Content Management" },
+  { href: "/accounts", icon: Settings, label: "Accounts" },
+  { href: "/billing-payment", icon: CreditCard, label: "Billing & Payment" },
 ];
 
 type ActionProps = {
