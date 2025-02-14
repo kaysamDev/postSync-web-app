@@ -15,15 +15,27 @@ import {
 } from "../../../../components/ui/avatar";
 import { LogOut, User } from "lucide-react";
 import { Separator } from "../../../../components/ui/separator";
+import { useState, useEffect } from "react";
 
 export default function Header() {
+  const [title, setTitle] = useState<string>("");
   const location = useLocation();
   const { pathname } = location;
+
+  useEffect(() => {
+    if (pathname === "/dashboard") {
+      setTitle("Dashboard");
+    } else if (pathname === "/accounts") {
+      setTitle("Accounts");
+    } else if (pathname === "/billing-payment") {
+      setTitle("Billing & Payment");
+    }
+  }, [pathname]);
 
   return (
     <>
       <div className="flex justify-between items-center p-4">
-        {pathname === "/dashboard" && <h5>Dashboard</h5>}
+        <h5>{title}</h5>
         <div className="flex items-center gap-4 md:mr-8">
           <Button variant="secondary">
             <Plus />
