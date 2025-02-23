@@ -8,7 +8,7 @@ export default function Layout() {
 
   return (
     <div className="flex h-screen">
-      <div className={`flex-none ${isOpen ? "w-60" : "w-24"}`}>
+      <div className={`flex-none ${isOpen ? "w-68" : "w-24"}`}>
         <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
       <main className="flex-1">

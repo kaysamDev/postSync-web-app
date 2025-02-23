@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  ChevronRight,
-  ChevronLeft,
   Home,
   FileText,
   CreditCard,
   Settings,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const links = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
-  { href: "#", icon: FileText, label: "Content Management" },
+  {
+    href: "#",
+    icon: FileText,
+    label: "Content Management",
+    subLinks: [
+      { href: "/post-scheduler", label: "Post Scheduler" },
+      { href: "/draft-post", label: "Draft Post" },
+    ],
+  },
   { href: "/accounts", icon: Settings, label: "Accounts" },
   { href: "/billing-payment", icon: CreditCard, label: "Billing & Payment" },
 ];
@@ -21,43 +29,64 @@ type ActionProps = {
   setIsOpen: (value: boolean) => void;
 };
 
-const SideBar: React.FC<ActionProps> = ({ isOpen, setIsOpen }) => {
+const SideBar: React.FC<ActionProps> = ({ isOpen }) => {
   const location = useLocation();
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+  const toggleSubMenu = (label: string) => {
+    setOpenSubMenu(openSubMenu === label ? null : label);
   };
 
   return (
     <div>
       <div
-        className={`fixed inset-y-0 left-0 transform ${isOpen ? "translate-x-0 w-60" : "-translate-x-0 w-16"} transition-transform duration-300 ease-in-out bg-primary-700 text-white`}
+        className={`fixed inset-y-0 left-0 transform ${isOpen ? "translate-x-0 w-68" : "-translate-x-0 w-16"} transition-transform duration-300 ease-in-out bg-primary-700 text-white`}
       >
-        <div className="relative flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4">
           <h5 className={`text-xl font-bold ${isOpen ? "block" : "hidden"}`}>
             Logo
           </h5>
-          <button
-            onClick={toggleSidebar}
-            className="absolute right-0 top-4 transform translate-x-1/2 top-4 text-gray-800 focus:outline-none bg-gray-100 rounded-full p-1 shadow-md"
-          >
-            {isOpen ? <ChevronLeft size={30} /> : <ChevronRight size={30} />}
-          </button>
         </div>
         <nav className="mt-4">
           {links.map((link, index) => (
-            <Link
-              key={index}
-              to={link.href}
-              className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-white/9 ${
-                location.pathname === link.href ? "bg-white/50" : ""
-              }`}
-            >
-              <link.icon size={20} className="mr-2" />
-              <span className={`${isOpen ? "block" : "hidden"}`}>
-                {link.label}
-              </span>
-            </Link>
+            <div key={index}>
+              <Link
+                to={link.href}
+                className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-white/9 ${
+                  location.pathname === link.href ? "bg-white/50" : ""
+                }`}
+                onClick={() => link.subLinks && toggleSubMenu(link.label)}
+              >
+                <link.icon size={20} className="mr-2" />
+                <span className={`${isOpen ? "block" : "hidden"}`}>
+                  {link.label}
+                </span>
+                {link.subLinks && (
+                  <span className="ml-auto">
+                    {openSubMenu === link.label ? (
+                      <ChevronUp size={20} />
+                    ) : (
+                      <ChevronDown size={20} />
+                    )}
+                  </span>
+                )}
+              </Link>
+              {link.subLinks && openSubMenu === link.label && (
+                <div className={`ml-8 ${isOpen ? "block" : "hidden"}`}>
+                  {link.subLinks.map((subLink, subIndex) => (
+                    <Link
+                      key={subIndex}
+                      to={subLink.href}
+                      className={`flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-white/9 ${
+                        location.pathname === subLink.href ? "bg-white/50" : ""
+                      }`}
+                    >
+                      <span>{subLink.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </nav>
       </div>
