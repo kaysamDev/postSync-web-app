@@ -29,6 +29,10 @@ export default function Header() {
       setTitle("Accounts");
     } else if (pathname === "/billing-payment") {
       setTitle("Billing & Payment");
+    } else if (pathname === "/post-scheduler") {
+      setTitle("Post Scheduler");
+    } else if (pathname === "/draft-post") {
+      setTitle("Draft Post");
     }
   }, [pathname]);
 
