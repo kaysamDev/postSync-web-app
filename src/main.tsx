@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import "./style/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Routes />
-  </React.StrictMode>
+	<React.StrictMode>
+		<Routes />
+	</React.StrictMode>
 );
